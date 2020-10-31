@@ -12,6 +12,6 @@
       [+]  Search Plugins And Theme in exploit-db</p>
     
 ```
-[step1] git clone 
-[step2] pip install -r requarments.text
+[step1] git clone https://github.com/echzed/batCMS.git
+[step2] pip install -r requirements.txt
 [step3] python main.py
