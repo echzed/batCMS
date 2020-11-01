@@ -1,5 +1,4 @@
 requests
 cloudscraper
-re
 termcolor
 os
