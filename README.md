@@ -17,3 +17,6 @@
 [step3] pip install -r requirements.txt
 [step4] python main.py
 ```
+
+<h2>Video</h2>
+<a href="youtube.com/watch?v=7DNxqy1Nbfc"><img src="https://i.imgur.com/AY8gSFw.jpg" style="max-width:100%;"></a>
