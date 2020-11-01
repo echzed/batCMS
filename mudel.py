@@ -1,8 +1,10 @@
-import random
-import requests
 import json
+import random
 import re
-from googlesearch import search
+
+import cloudscraper
+import requests
+
 
 def random_user():
     user_agent_list = [
@@ -36,7 +38,9 @@ def joomla_detect(url):
     r = requests.get(url, headers=header)
     source = r.text
 
-    if re.search(re.compile(r'<script type=\"text/javascript\" src=\"/media/system/js/mootools.js\"></script>|/media/system/js/|com_content|Joomla!'), source):
+    if re.search(re.compile(
+            r'<script type=\"text/javascript\" src=\"/media/system/js/mootools.js\"></script>|/media/system/js/|com_content|Joomla!'),
+                 source):
 
         return True
 
@@ -53,11 +57,7 @@ def wp_version(url):
 
     if matches:
         version = matches.group(1)
-        if len(version) > 0 or version != '' or version != None:
-            return version[0]
-        
-        else:
-            return None
+        return version
 
 
 def joomla_version(url):
@@ -122,19 +122,30 @@ def wp_plugin(url):
 
 
 def ex_search(plugins_name):
-    
-    q = str(plugins_name) + ' site:https://www.exploit-db.com'
-    ex_array = []
+    url = f"https://www.exploit-db.com/search?q={plugins_name}"
+    cf = cloudscraper.create_scraper()
+    headers = {
 
-    for data in search(q , num_results=20):
+        'accept': 'application/json, text/javascript, */*; q=0.01',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'en-US,en;q=0.9',
+        'referer': f'https://www.exploit-db.com/',
+        'x-requested-with': 'XMLHttpRequest',
 
-        if "https://www.exploit-db.com/exploits" in data:
-
-            ex_array.append(data)
-
-    if len(ex_array) != 0 :
-
-        return ex_array
-
-    else:
-        return None
+    }
+    get = cf.get(url, headers=headers)
+    tex = get.json()
+    x = json.dumps(tex)
+    d2 = json.loads(x)
+    data = d2['data']
+    for i in data:
+        download = (i['download'])
+        reg = re.search("href=[\"\'](.*?)[\"\']", download)
+        pp = (reg.group())
+        split = "https://www.exploit-db.com" + (pp.split("\"")[1])
+        des = (i['description'][1])
+        # print(des + " ---> " + split)
+        if len(split) != "":
+            return des + " ---> " + split
+        else:
+            return None
