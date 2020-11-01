@@ -13,5 +13,7 @@
     
 ```
 [step1] git clone https://github.com/echzed/batCMS.git
-[step2] pip install -r requirements.txt
-[step3] python main.py
+[step2] cd batCMS
+[step3] pip install -r requirements.txt
+[step4] python main.py
+```
