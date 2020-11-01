@@ -19,7 +19,7 @@
 ```
 
 <h2>Video</h2>
-<a href="youtube.com/watch?v=7DNxqy1Nbfc"><img src="https://i.imgur.com/AY8gSFw.jpg" style="max-width:100%;"></a>
+<a href="https://www.youtube.com/watch?v=7DNxqy1Nbfc"><img src="https://i.imgur.com/AY8gSFw.jpg" style="max-width:100%;"></a>
 
 <h2>contact with me</h2>
 <h3>email : echzed.pentester@gmail.com</h3>
