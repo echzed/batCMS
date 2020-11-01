@@ -1,7 +1,5 @@
 requests
-json
 cloudscraper
-random
 re
 termcolor
 os
