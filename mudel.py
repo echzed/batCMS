@@ -138,6 +138,7 @@ def ex_search(plugins_name):
     x = json.dumps(tex)
     d2 = json.loads(x)
     data = d2['data']
+    ex_array = []
     for i in data:
         download = (i['download'])
         reg = re.search("href=[\"\'](.*?)[\"\']", download)
@@ -145,7 +146,12 @@ def ex_search(plugins_name):
         split = "https://www.exploit-db.com" + (pp.split("\"")[1])
         des = (i['description'][1])
         # print(des + " ---> " + split)
-        if len(split) != "":
-            return des + " ---> " + split
-        else:
-            return None
+        
+        ex_array.append(split)
+    
+    if len(ex_array) != 0:
+
+        return ex_array
+    
+    else:
+        return None
