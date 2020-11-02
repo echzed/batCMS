@@ -23,9 +23,9 @@ def random_user():
 def wp_detect(url):
     header = {"user-agent": random_user()}
     r = requests.get(url, headers=header)
-    source = r.text
+    source = r.content
 
-    if re.search(re.compile(r'wp-content|wordpress|xmlrpc.php'), source):
+    if re.search(re.compile(r'wp-content|wordpress|xmlrpc.php'), str(source)):
 
         return True
 
@@ -36,11 +36,11 @@ def wp_detect(url):
 def joomla_detect(url):
     header = {'user-agent': random_user()}
     r = requests.get(url, headers=header)
-    source = r.text
+    source = r.content
 
     if re.search(re.compile(
             r'<script type=\"text/javascript\" src=\"/media/system/js/mootools.js\"></script>|/media/system/js/|com_content|Joomla!'),
-                 source):
+                 str(source)):
 
         return True
 
